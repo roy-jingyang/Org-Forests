@@ -1,64 +1,19 @@
+<!DOCTYPE html>
+
+<title> Demo for CAiSE'21 - Submission 76 </title>
+
 <h4> Resource Group Profiles </h4>
 
-<h5> Composed overview </h5>
 <ul>
 <li>
     <a href="{{ url_for('tests.show_profiles_composed_workload') }}"
     target="_blank"> 
-    Example 1: Analyze the workload allocation patterns of groups and their members and compare
+    Interface 1 (fig. 2 in the manuscript): 
+    analyzing resource group work profiles in terms of workload, participation and distribution.
 </a></li>
 <li>
-    <a href="{{ url_for('tests.show_profiles_composed_performance') }}" target="_blank"> 
-    Example 2: Analyze the performance of groups and compare
+    <a href="./interface_2.html" target="_blank"> 
+    Interface 2 (fig. 3 in the manuscript):
+    analyzing resource group profiles in terms of productivity.
 </a></li>
-<li>
-    <a href="{{ url_for('tests.track_profiles_distribution', indicator='member_load') }}?group=muni-2" target="_blank"> 
-    Example 3: Analyze the change of personnel (identify changed member(s))
-</a></li>
-</ul>
-
-<h5> Part: Reporting snapshots </h5>
-<ul>
-<li>
-    <a href="{{ url_for('tests.show_profiles_workload',
-    indicator='stake') }}" target="_blank"> 
-    workload: stake 
-</a></li>
-<li>
-    <a href="{{ url_for('tests.show_profiles_workload', indicator='assignment') }}" target="_blank"> 
-    workload: assignment 
-</a></li>
-<li>
-    <a href="{{ url_for('tests.show_profiles_workload', indicator='relative_focus') }}" target="_blank"> 
-    workload: relative_focus 
-</a></li>
-<li>
-    <a href="{{ url_for('tests.show_profiles_workload', indicator='relative_stake') }}" target="_blank"> 
-    workload: relative_stake 
-</a></li>
-<li>
-    <a href="{{ url_for('tests.show_profiles_participation', indicator='attendance') }}" target="_blank"> 
-    participation: attendance </a></li>
-<li>
-    <a href="{{ url_for('tests.show_profiles_distribution',
-    indicator='member_load') }}?group=muni-1" target="_blank"> 
-    distribution: member_load (need to specify group)
-</a></li>
-<li>
-    <a href="{{ url_for('tests.show_profiles_distribution', indicator='member_assignment') }}" target="_blank"> 
-    distribution: member_assignment 
-</a></li>
-</ul>
-
-<h5> Part: Tracking changes over time </h5>
-<ul>
-<li>
-    <a href="{{ url_for('tests.track_profiles_workload', indicator='stake') }}" target="_blank"> 
-    tracking workload: stake over time
-</a></li>
-<li>
-    <a href="{{ url_for('tests.track_profiles_distribution', indicator='member_load') }}?group=muni-1" target="_blank"> 
-    tracking distribution: member_load over time
-</a></li>
-
 </ul>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Demo: Interface 2</title>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+</head>
+
+<body>
+  <div id="vis" style="margin: auto; height: 100%"></div>
+
+  <script type="text/javascript">
+    /* feed the specification file data to var vlSpec */
+    var vlSpec =
+    {
+      "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+
+      "data": {"url": "http://roy-jingyang.github.io/Org-WorkProfiles-demo/bpic15.csv"},
+
+      "config": {
+        "axisX": {
+          "labelAngle": -45
+        }
+      },
+
+      "transform": [
+        {
+          "timeUnit": "yearweek",
+          "field": "date",
+          "as": "date_week"
+        },
+        {
+          "timeUnit": "yearweek",
+          "field": "case_start",
+          "as": "case_start_week"
+        },
+        {
+          "timeUnit": "yearweek",
+          "field": "case_end",
+          "as": "case_end_week"
+        }
+      ],
+
+      "columns": 2,
+      "resolve": { "legend": { "color": "independent" } },
+      "concat": [
+        {
+          "title": {
+            "text": "case throughput (overview)",
+            "subtitle": "produtivity: throughput, stacked area chart"
+          },
+
+          "width": 360,
+          "height": 100,
+
+          "mark": "area",
+
+          "transform": [{
+            "aggregate": [{
+              "op": "distinct",
+              "field": "case_id",
+              "as": "group_cases_ended"
+            }],
+            "groupby": ["case_end", "group"]
+          }],
+
+          "selection": {
+            "sel_date_interval": {
+              "type": "interval",
+              "encodings": ["x"],
+              "empty": "all"
+            }
+          },
+
+          "encoding": {
+            "x": {
+              "timeUnit": "yearquarter",
+              "field": "case_end"
+            },
+            "y": {
+              "aggregate": "sum",
+              "field": "group_cases_ended",
+              "title": "#cases completed"
+            },
+            "color": {
+              "field": "group",
+              "type": "nominal"
+            }
+          }
+
+        },
+
+        {
+          "title": "case throughput (detailed view)",
+
+          "width": 960,
+          "height": 200,
+
+          "transform": [
+            {
+              "aggregate": [{
+                "op": "distinct",
+                "field": "case_id",
+                "as": "group_cases_completed"
+              }],
+              "groupby": ["case_end_week", "group"]
+            }
+          ],
+
+          "encoding": {
+            "x": {
+              "field": "case_end_week",
+              "type": "temporal",
+              "scale": { "domain": { "selection": "sel_date_interval" } }
+            }
+          },
+
+          "layer": [
+            {
+              "mark": {
+                "type": "area",
+                "point": true
+              },
+              "selection": {
+                "sel_group": {
+                  "type": "multi",
+                  "fields": ["group"],
+                  "bind": "legend"
+                }
+              },
+              "encoding": {
+                "y": {
+                  "aggregate": "sum",
+                  "field": "group_cases_completed",
+                  "title": "#cases completed",
+                  "type": "quantitative"
+                },
+                "color": {
+                  "field": "group",
+                  "type": "nominal"
+                },
+                "opacity": {
+                  "condition": { "selection": "sel_group", "value": 1 },
+                  "value": 0.2
+                }
+              }
+            },
+            {
+              "mark": "rule",
+              "transform": [{ "pivot": "group", "value": "group_cases_completed", "groupby": ["case_end_week"] }],
+              "encoding": {
+                "opacity": {
+                  "condition": { "value": 0.5, "selection": "sel_date" },
+                  "value": 0
+                },
+                "tooltip": [
+                  {
+                    "field": "case_end_week",
+                    "type": "temporal",
+                    "format": "%W",
+                    "title": "Week"
+                  },
+                  {
+                    "field": "case_end_week",
+                    "type": "temporal",
+                    "format": "%Y-%m-%d (%a)",
+                    "title": "Week start"
+                  }
+                ]
+              },
+              "selection": {
+                "sel_date": {
+                  "type": "multi",
+                  "fields": ["case_end_week"],
+                  "nearest": true,
+                  "on": "click",
+                  "empty": "none"
+                }
+              }
+            },
+
+            {
+              "mark": { "type": "text", "align": "center" },
+              "encoding": {
+                "text": {
+                  "condition": {
+                    "selection": "sel_date",
+                    "field": "case_end_week",
+                    "type": "temporal",
+                    "format": "Week-%W"
+                  }
+                },
+                "y": { "value": 10 }
+              }
+            }
+          ]
+        },
+
+        {
+          "title": {
+            "text": "case cycle time (overview)",
+            "subtitle": "productivity: throughput (stacked area chart)"
+          },
+
+          "width": 360,
+          "height": 100,
+
+          "mark": "line",
+
+          "selection": {
+            "sel_date_interval": {
+              "type": "interval",
+              "encodings": ["x"],
+              "empty": "all"
+            }
+          },
+
+          "encoding": {
+            "x": {
+              "timeUnit": "yearquarter",
+              "field": "case_end"
+            },
+            "y": {
+              "aggregate": "average",
+              "field": "case_duration_days",
+              "title": "cycle time (days)"
+            },
+            "color": {
+              "field": "group",
+              "type": "nominal"
+            }
+          }
+
+        },
+
+        {
+          "title": "case cycle time (detailed view)",
+
+          "width": 960,
+          "height": 200,
+
+          "transform": [
+            {
+              "aggregate": [{
+                "op": "average",
+                "field": "case_duration_days",
+                "as": "group_throughput"
+              }],
+              "groupby": ["case_end_week", "group"]
+            }
+          ],
+
+          "encoding": {
+            "x": {
+              "field": "case_end_week",
+              "type": "temporal",
+              "scale": { "domain": { "selection": "sel_date_interval" } }
+            }
+          },
+
+          "layer": [
+            {
+              "mark": {
+                "type": "line",
+                "point": true
+              },
+              "selection": {
+                "sel_group": {
+                  "type": "multi",
+                  "fields": ["group"],
+                  "bind": "legend"
+                }
+              },
+              "encoding": {
+                "y": {
+                  "aggregate": "average",
+                  "field": "group_throughput",
+                  "title": "cycle time (days)",
+                  "type": "quantitative"
+                },
+                "color": {
+                  "field": "group",
+                  "type": "nominal"
+                },
+                "opacity": {
+                  "condition": { "selection": "sel_group", "value": 1 },
+                  "value": 0.2
+                }
+              }
+            },
+            {
+              "mark": "rule",
+              "transform": [{ "pivot": "group", "value": "group_throughput", "groupby": ["case_end_week"] }],
+              "encoding": {
+                "opacity": {
+                  "condition": { "value": 0.5, "selection": "sel_date" },
+                  "value": 0
+                },
+                "tooltip": [
+                  {
+                    "field": "case_end_week",
+                    "type": "temporal",
+                    "format": "%W",
+                    "title": "Week"
+                  },
+                  {
+                    "field": "case_end_week",
+                    "type": "temporal",
+                    "format": "%Y-%m-%d (%a)",
+                    "title": "Week start"
+                  },
+                  {
+                    "aggregate": "sum",
+                    "field": "muni-1",
+                    "type": "quantitative",
+                    "title": "muni-1"
+                  },
+                  {
+                    "aggregate": "sum",
+                    "field": "muni-2",
+                    "type": "quantitative",
+                    "title": "muni-2"
+                  },
+                  {
+                    "aggregate": "sum",
+                    "field": "muni-3",
+                    "type": "quantitative",
+                    "title": "muni-3"
+                  },
+                  {
+                    "aggregate": "sum",
+                    "field": "muni-4",
+                    "type": "quantitative",
+                    "title": "muni-4"
+                  },
+                  {
+                    "aggregate": "sum",
+                    "field": "muni-5",
+                    "type": "quantitative",
+                    "title": "muni-5"
+                  }
+                ]
+              },
+              "selection": {
+                "sel_date": {
+                  "type": "multi",
+                  "fields": ["case_end_week"],
+                  "nearest": true,
+                  "on": "click",
+                  "empty": "none"
+                }
+              }
+            },
+
+            {
+              "mark": { "type": "text", "align": "center" },
+              "encoding": {
+                "text": {
+                  "condition": {
+                    "selection": "sel_date",
+                    "field": "case_end_week",
+                    "type": "temporal",
+                    "format": "Week-%W"
+                  }
+                },
+                "y": { "value": 10 }
+              }
+            }
+          ]
+        }
+      ]
+    };
+
+    vegaEmbed('#vis', vlSpec);
+  </script>
+
+</html>
