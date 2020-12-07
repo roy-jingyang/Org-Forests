@@ -12,7 +12,8 @@
 
   <script type="text/javascript">
     /* feed the specification file data to var vlSpec */
-    $.getJSON("http://roy-jingyang.github.io/Org-WorkProfiles-demo/vlspec/composed.vl.json", function(data){
+    $.getJSON("http://royjy.me/Org-WorkProfiles-demo/vlspec/composed.vl.json", function(data){
+      console.log(vlspec);
       vegaEmbed("#vis", data)
     });
   </script>

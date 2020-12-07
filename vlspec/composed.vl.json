@@ -1,6 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "description": "Composed multi-facet view",
+
+  "data": {
+    "url": "http://royjy.me/Org-WorkProfiles-demo/bpic15.csv",
+    "format": {"type": "csv"}
+  },
 
   "config": {
     "axisX": {
@@ -21,8 +25,8 @@
   "concat": [
     {
       "title": {
-        "text": "group workload (overview)",
-        "subtitle": "workload: allocation, stacked area chart"
+        "text": "Workload: allocation (overview)",
+        "subtitle": "stacked area chart"
       },
 
       "width": 360,
@@ -66,8 +70,7 @@
 
     {
       "title": {
-        "text": "group workload (detailed view)",
-        "subtitle": "workload: allocation, stacked area chart"
+        "text": "Workload: allocation (detailed view)"
       },
 
       "width": 960,
@@ -175,8 +178,8 @@
 
     {
       "title": {
-        "text": "group workload (activity dimension)",
-        "subtitle": "workload: assignments, heatmap"
+        "text": "Workload: assignments_cases (activity types)",
+        "subtitle": "heatmap"
       },
 
       "width": {"step": 30},
@@ -276,8 +279,8 @@
 
     {
       "title": {
-        "text": "group workload (case dimension)",
-        "subtitle": "workload: assignments, heatmap"
+        "text": "Workload: assignments_cases",
+        "subtitle": "heatmap"
       },
 
       "width": {"step": 30},
@@ -380,8 +383,8 @@
 
     {
       "title": {
-        "text": "group workload (activity dimension)",
-        "subtitle": "workload: relative focus, heatmap"
+        "text": "Workload: rel_focus_events (activity types)",
+        "subtitle": "heatmap"
       },
 
       "width": {"step": 30},
@@ -489,8 +492,8 @@
 
     {
       "title": {
-        "text": "group workload (case dimension)",
-        "subtitle": "workload: relative focus, heatmap"
+        "text": "Workload: rel_focus_cases",
+        "subtitle": "heatmap"
       },
 
       "width": {"step": 30},
@@ -593,8 +596,8 @@
 
     {
       "title": {
-        "text": "group work distribution over active members (activity dimension)",
-        "subtitle": "distribution: member assignments (normalized), heatmap"
+        "text": "Distribution: member_assignments, normalized (activity types)",
+        "subtitle": "heatmap"
       },
 
       "width": {"step": 30},
@@ -709,11 +712,6 @@
     },
 
     {
-      "title": {
-        "text": "group work distribution over active members (case dimension)",
-        "subtitle": "distribution: member assignments (normalized), heatmap"
-      },
-
       "width": {"step": 30},
       "height": {"step": 30},
 
@@ -838,8 +836,8 @@
 
     {
       "title": {
-        "text": "group participation",
-        "subtitle": "participation: attendance, stacked bar chart"
+        "text": "Participation: attendance",
+        "subtitle": "stacked bar chart"
       },
 
       "width": {"step": 30},
