@@ -2,6 +2,8 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "description": "Composed multi-facet view",
 
+  "data": null,
+
   "config": {
     "axisX": {
       "labelAngle": -45
@@ -150,6 +152,36 @@
                 "type": "temporal",
                 "format": "%Y-%m-%d (%a)",
                 "title": "Week start"
+              },
+              {
+                "aggregate": "sum",
+                "field": "muni-1",
+                "type": "quantitative",
+                "title": "muni-1"
+              },
+              {
+                "aggregate": "sum",
+                "field": "muni-2",
+                "type": "quantitative",
+                "title": "muni-2"
+              },
+              {
+                "aggregate": "sum",
+                "field": "muni-3",
+                "type": "quantitative",
+                "title": "muni-3"
+              },
+              {
+                "aggregate": "sum",
+                "field": "muni-4",
+                "type": "quantitative",
+                "title": "muni-4"
+              },
+              {
+                "aggregate": "sum",
+                "field": "muni-5",
+                "type": "quantitative",
+                "title": "muni-5"
               }
             ]
           },
@@ -183,8 +215,8 @@
 
     {
       "title": {
-        "text": "case cycle time (overview)",
-        "subtitle": "productivity: throughput (stacked area chart)"
+        "text": "efficiency - case cycle time (overview)",
+        "subtitle": "productivity: effciency (stacked area chart)"
       },
 
       "width": 360,
@@ -293,6 +325,36 @@
                 "type": "temporal",
                 "format": "%Y-%m-%d (%a)",
                 "title": "Week start"
+              },
+              {
+                "aggregate": "sum",
+                "field": "muni-1",
+                "type": "quantitative",
+                "title": "muni-1"
+              },
+              {
+                "aggregate": "sum",
+                "field": "muni-2",
+                "type": "quantitative",
+                "title": "muni-2"
+              },
+              {
+                "aggregate": "sum",
+                "field": "muni-3",
+                "type": "quantitative",
+                "title": "muni-3"
+              },
+              {
+                "aggregate": "sum",
+                "field": "muni-4",
+                "type": "quantitative",
+                "title": "muni-4"
+              },
+              {
+                "aggregate": "sum",
+                "field": "muni-5",
+                "type": "quantitative",
+                "title": "muni-5"
               }
             ]
           },
