@@ -712,6 +712,11 @@
     },
 
     {
+      "title": {
+        "text": "Distribution: member_assignments, normalized (time types)",
+        "subtitle": "heatmap"
+      },
+
       "width": {"step": 30},
       "height": {"step": 30},
 
@@ -725,10 +730,9 @@
 
         {
           "aggregate": [
-            {"op": "count", "as": "aggregate_assignments"},
-            {"op": "distinct", "field": "case_id", "as": "aggregate_assignments_cases"}
+            {"op": "count", "as": "aggregate_assignments"}
           ],
-          "groupby": ["resource", "ct"]
+          "groupby": ["resource", "tt"]
         },
         {
           "joinaggregate": [
@@ -736,17 +740,12 @@
               "op": "sum",
               "field": "aggregate_assignments",
               "as": "total_resource"
-            },
-            {
-              "op": "sum",
-              "field": "aggregate_assignments_cases",
-              "as": "total_resource_cases"
             }
           ],
           "groupby": ["resource"]
         },
         {
-          "calculate": "datum.aggregate_assignments_cases / datum.total_resource_cases",
+          "calculate": "datum.aggregate_assignments / datum.total_resource",
           "as": "c"
         },
         {
@@ -786,7 +785,7 @@
           "title": "resources (group members)"
         },
         "y": {
-          "field": "ct",
+          "field": "tt",
           "type": "nominal",
           "title": ""
         }
