@@ -14,7 +14,7 @@
     /* feed the specification file data to var vlSpec */
     $.getJSON("http://royjy.me/Org-WorkProfiles-demo/vlspec/composed.vl.json", function(vlspec){
       console.log(vlspec);
-      vegaEmbed("#vis", data)
+      vegaEmbed("#vis", vlspec)
     });
   </script>
 </html>
