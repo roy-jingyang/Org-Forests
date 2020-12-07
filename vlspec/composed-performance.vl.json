@@ -1,6 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "description": "Composed multi-facet view",
 
   "data": {
     "url": "http://royjy.me/Org-WorkProfiles-demo/bpic15.csv",
@@ -36,8 +35,8 @@
   "concat": [
     {
       "title": {
-        "text": "case throughput (overview)",
-        "subtitle": "produtivity: throughput, stacked area chart"
+        "text": "Productivity: throughput (overview)",
+        "subtitle": "stacked area chart"
       },
 
       "width": 360,
@@ -81,7 +80,7 @@
     },
 
     {
-      "title": "case throughput (detailed view)",
+      "title": "Productivity: throughput (detailed view)",
 
       "width": 960,
       "height": 200,
@@ -218,8 +217,8 @@
 
     {
       "title": {
-        "text": "efficiency - case cycle time (overview)",
-        "subtitle": "productivity: efficiency, stacked area chart"
+        "text": "Productivity: efficiency as avg. case cycle time (overview)",
+        "subtitle": "line chart"
       },
 
       "width": 360,
@@ -254,7 +253,7 @@
     },
 
     {
-      "title": "case cycle time (detailed view)",
+      "title": "Productivity: efficiency as avg. case cycle time (detailed view)",
 
       "width": 960,
       "height": 200,
