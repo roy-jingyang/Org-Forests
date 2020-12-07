@@ -772,7 +772,7 @@
           }]
         },
         {
-          "calculate": "0.5 * datum.max_c < datum.c",
+          "calculate": "0.5 < datum.c",
           "as": "threshold_aggregate_c"
         }
       ],
