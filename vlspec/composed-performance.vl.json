@@ -2,7 +2,10 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
   "description": "Composed multi-facet view",
 
-  "data": "http://royjy.me/Org-WorkProfiles-demo/bpic15.csv",
+  "data": {
+    "url": "http://royjy.me/Org-WorkProfiles-demo/bpic15.csv",
+    "format": {"type": "csv"}
+  },
 
   "config": {
     "axisX": {
