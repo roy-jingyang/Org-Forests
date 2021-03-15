@@ -3,8 +3,9 @@ Repository holding and hosting the prototype built for a paper submitted to BPM 
 
 *Yang, J., Ouyang, C., ter Hofstede, A., van der Aalst, W., & Leyer, M. (2021). Seeing the Forest for the Trees: Group-Oriented Workforce Analytics.*
 
+To access the prototype, follow http://roy-jingyang.github.io/Org-WorkProfiles-demo/
 
-#### Preprocessing of the original BPIC15 event dataset
+### Appendix: Preprocessing of the original BPIC15 event dataset
 
 Preprocessing steps include:
 1. focusing on only the executions of the main subprocess, and
