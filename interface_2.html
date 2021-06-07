@@ -14,7 +14,7 @@
 
   <script type="text/javascript">
     /* feed the specification file data to var vlSpec */
-    $.getJSON("./vlspec/composed-performance.vl.json", function(vlspec){
+    $.getJSON("https://github.com/roy-jingyang/Org-WorkProfiles-demo/blob/dev/vlspec/composed-performance.vl.json", function(vlspec){
       console.log(vlspec);
       vegaEmbed("#vis", vlspec)
     });
