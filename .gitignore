@@ -1,0 +1,10 @@
+# Ignore Vim undo log
+*.un~
+*.swp
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore local server
+app.py
+
