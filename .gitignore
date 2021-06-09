@@ -4,6 +4,9 @@
 
 **/__pycache__
 
+# Ignore archived data files
+arx*.csv
+
 # Ignore VS Code settings
 .vscode/
 

@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
 
   "data": {
-    "url": "./data/bpic13.csv",
+    "url": "./data/bpic15.csv",
     "format": {"type": "csv"}
   },
 
@@ -25,8 +25,8 @@
   "concat": [
     {
       "title": {
-        "text": "Workload: allocation (overview)",
-        "subtitle": "stacked area chart"
+        "text": "Workload: allocation - Overview",
+        "subtitle": "(activities)"
       },
 
       "width": 360,
@@ -70,7 +70,8 @@
 
     {
       "title": {
-        "text": "Workload: allocation (detailed view)"
+        "text": "Workload: allocation - Details",
+        "subtitle": "(activities)"
       },
 
       "width": 960,
@@ -178,8 +179,8 @@
 
     {
       "title": {
-        "text": "Workload: assignments_cases (activity types)",
-        "subtitle": "heatmap"
+        "text": "Workload: assignment",
+        "subtitle": "(activities)"
       },
 
       "width": {"step": 30},
@@ -279,8 +280,8 @@
 
     {
       "title": {
-        "text": "Workload: assignments_cases",
-        "subtitle": "heatmap"
+        "text": "Workload: assignment",
+        "subtitle": "(cases)"
       },
 
       "width": {"step": 30},
@@ -383,8 +384,8 @@
 
     {
       "title": {
-        "text": "Workload: rel_focus_events (activity types)",
-        "subtitle": "heatmap"
+        "text": "Workload: rel_focus",
+        "subtitle": "(activities)"
       },
 
       "width": {"step": 30},
@@ -492,8 +493,8 @@
 
     {
       "title": {
-        "text": "Workload: rel_focus_cases",
-        "subtitle": "heatmap"
+        "text": "Workload: rel_focus",
+        "subtitle": "(cases)"
       },
 
       "width": {"step": 30},
@@ -596,8 +597,7 @@
 
     {
       "title": {
-        "text": "Distribution: member_assignments, normalized (activity types)",
-        "subtitle": "heatmap"
+        "text": "Distribution: member_assignment (normalized, activity dimension)"
       },
 
       "width": {"step": 30},
@@ -713,8 +713,7 @@
 
     {
       "title": {
-        "text": "Distribution: member_assignments, normalized (time types)",
-        "subtitle": "heatmap"
+        "text": "Distribution: member_assignment (normalized, time dimension)"
       },
 
       "width": {"step": 30},
@@ -835,8 +834,7 @@
 
     {
       "title": {
-        "text": "Participation: attendance",
-        "subtitle": "stacked bar chart"
+        "text": "Participation: attendance"
       },
 
       "width": {"step": 30},

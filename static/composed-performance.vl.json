@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
 
   "data": {
-    "url": "./data/bpic13.csv",
+    "url": "./data/bpic15.csv",
     "format": {"type": "csv"}
   },
 
@@ -35,8 +35,8 @@
   "concat": [
     {
       "title": {
-        "text": "Productivity: throughput (overview)",
-        "subtitle": "stacked area chart"
+        "text": "Performance: amount-related productivity - Overview",
+        "subtitle": "(cases)"
       },
 
       "width": 360,
@@ -80,7 +80,10 @@
     },
 
     {
-      "title": "Productivity: throughput (detailed view)",
+      "title": {
+        "text": "Performance: amount-related productivity - Details",
+        "subtitle": "(cases)"
+      },
 
       "width": 960,
       "height": 200,
@@ -217,8 +220,8 @@
 
     {
       "title": {
-        "text": "Productivity: efficiency as avg. case cycle time (overview)",
-        "subtitle": "line chart"
+        "text": "Performance: time-related productivity - Overview",
+        "subtitle": "(cases)"
       },
 
       "width": 360,
@@ -253,7 +256,10 @@
     },
 
     {
-      "title": "Productivity: efficiency as avg. case cycle time (detailed view)",
+      "title": {
+        "text": "Performance: time-related productivity - Details",
+        "subtitle": "(cases)"
+      },
 
       "width": 960,
       "height": 200,
