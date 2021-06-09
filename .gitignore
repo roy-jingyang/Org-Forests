@@ -1,0 +1,15 @@
+# Ignore Vim undo log
+*.un~
+*.swp
+
+**/__pycache__
+
+# Ignore archived data files
+arx*.csv
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore local server
+app.py
+
