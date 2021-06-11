@@ -660,7 +660,7 @@
         "x": {
           "field": "resource",
           "type": "nominal",
-          "sort": {"field": "pct_resource"},
+          "sort": {"field": "resource"},
           "title": "resources (group members)"
         },
         "y": {
@@ -780,7 +780,7 @@
         "x": {
           "field": "resource",
           "type": "nominal",
-          "sort": {"field": "pct_resource"},
+          "sort": {"field": "resource"},
           "title": "resources (group members)"
         },
         "y": {
