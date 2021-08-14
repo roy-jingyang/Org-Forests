@@ -1,6 +1,8 @@
 
 ##### Yang, J., Ouyang, C., ter Hofstede, A., van der Aalst, W., & Leyer, M. (2021). Seeing the Forest for the Trees: Group-Oriented Workforce Analytics. In *Proceedings of the Business Process Management 19th International Conference, BPM 2021*. Springer (in press)
 
+Please use the [Issues](https://github.com/roy-jingyang/Org-Forests/issues) page if there are any questions or bugs.
+
 ----------
 
 ### Appendix: Preprocessing of the original BPIC15 event dataset
