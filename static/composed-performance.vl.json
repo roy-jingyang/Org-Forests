@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
 
   "data": {
-    "url": "http://royjy.me/Org-Forests/static/data/bpic15.csv",
+    "url": "https://royjy.me/Org-Forests/static/data/bpic15.csv",
     "format": {"type": "csv"}
   },
 
