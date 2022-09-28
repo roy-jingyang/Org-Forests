@@ -177,6 +177,210 @@
       ]
     },
 
+    {
+      "title": {
+        "text": "Workload: assignment",
+        "subtitle": "(activities)"
+      },
+
+      "width": {"step": 30},
+      "height": {"step": 30},
+
+      "transform": [
+        {
+          "filter": {"selection": "sel_date_interval"}
+        },
+        {
+          "aggregate": [{
+            "op": "count", 
+            "as": "aggregate_assignments"
+            }],
+          "groupby": ["group", "at"]
+        },
+        {
+          "calculate": "datum.aggregate_assignments + 0",
+          "as": "c"
+        },
+
+        {
+          "joinaggregate": [{
+            "op": "max", 
+            "field": "c",
+            "as": "max_c"
+          }]
+        },
+        {
+          "calculate": "0.5 * datum.max_c < datum.c",
+          "as": "threshold_aggregate_c"
+        }
+      ],
+
+      "encoding": {
+        "x": {
+          "field": "group",
+          "type": "nominal",
+          "title": "group"
+        },
+        "y": {
+          "field": "at",
+          "type": "nominal",
+          "title": ""
+        }
+      },
+      "layer": [
+        {
+          "mark": "rect",
+          "encoding": {
+            "color": {
+              "aggregate": "min",
+              "field": "c",
+              "type": "quantitative",
+              "scale": {"scheme": "lightgreyred"},
+              "legend": {
+                "title": "assignments",
+                "format": "d"
+              }
+            },
+            "opacity": {
+              "condition": {"selection": "sel_group", "value": 1},
+              "value": 0.1
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 11,
+            "fontWeight": "bold"
+          },
+          "encoding": {
+            "text": {
+              "aggregate": "min",
+              "field": "c",
+              "type": "quantitative",
+              "format": "d"
+            },
+            "color": {
+              "field": "threshold_aggregate_c",
+              "type": "nominal",
+              "scale": {
+                "domain": [false, true],
+                "range": ["black", "white"]
+              },
+              "legend": null
+            },
+            "opacity": {
+              "condition": {"selection": "sel_group", "value": 1},
+              "value": 0.1
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "title": {
+        "text": "Workload: assignment",
+        "subtitle": "(cases)"
+      },
+
+      "width": {"step": 30},
+      "height": {"step": 30},
+
+      "transform": [
+        {
+          "filter": {"selection": "sel_date_interval"}
+        },
+        {
+          "aggregate": [{"op": "distinct", "field": "case_id", "as": "aggregate_assignments"}],
+          "groupby": ["group", "ct"]
+        },
+        {
+          "joinaggregate": [{
+            "op": "sum",
+            "field": "aggregate_assignments",
+            "as": "total_group"
+          }],
+          "groupby": ["group"]
+        },
+        {
+          "calculate": "datum.aggregate_assignments + 0",
+          "as": "c"
+        },
+
+        {
+          "joinaggregate": [{
+            "op": "max", 
+            "field": "c",
+            "as": "max_c"
+          }]
+        },
+        {
+          "calculate": "0.5 * datum.max_c < datum.c",
+          "as": "threshold_aggregate_c"
+        }
+      ],
+
+      "encoding": {
+        "x": {
+          "field": "group",
+          "type": "nominal",
+          "title": "group"
+        },
+        "y": {
+          "field": "ct",
+          "type": "nominal",
+          "title": ""
+        }
+      },
+      "layer": [
+        {
+          "mark": "rect",
+          "encoding": {
+            "color": {
+              "field": "c",
+              "type": "quantitative",
+              "scale": {"scheme": "lightgreyred"},
+              "legend": {
+                "title": "assignments",
+                "format": "d"
+              }
+            },
+            "opacity": {
+              "condition": {"selection": "sel_group", "value": 1},
+              "value": 0.1
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "fontSize": 11,
+            "fontWeight": "bold"
+          },
+          "encoding": {
+            "text": {
+              "field": "c",
+              "type": "quantitative",
+              "format": "d"
+            },
+            "color": {
+              "field": "threshold_aggregate_c",
+              "type": "nominal",
+              "scale": {
+                "domain": [false, true],
+                "range": ["black", "white"]
+              },
+              "legend": null
+            },
+            "opacity": {
+              "condition": {"selection": "sel_group", "value": 1},
+              "value": 0.1
+            }
+          }
+        }
+      ]
+    },
 
     {
       "title": {
@@ -622,6 +826,96 @@
               },
               "legend": null
             }
+          }
+        }
+      ]
+    },
+
+
+    {
+      "title": {
+        "text": "Participation: attendance"
+      },
+
+      "width": {"step": 30},
+      "height": 300,
+      "transform": [
+        {
+          "filter": {"selection": "sel_date_interval"}
+        },
+        {
+          "joinaggregate": [{
+            "op": "distinct",
+            "field": "resource",
+            "as": "total_members"
+          }],
+          "groupby": ["group"]
+        }
+      ],
+
+      "encoding": {
+        "x": {
+          "field": "group",
+          "type": "nominal",
+          "title": "group"
+        },
+        "color": {
+          "field": "group",
+          "type": "nominal"
+        }
+      },
+
+      "layer": [
+        {
+          "mark": {
+            "type": "bar",
+            "filled": false
+          },
+          "encoding": {
+            "y": {
+              "field": "total_members",
+              "type": "quantitative",
+              "title": ""
+            },
+            "tooltip": [
+              {"field": "total_members"}
+            ]
+          }
+        },
+
+        {
+          "transform": [
+            {
+              "filter": {"selection": "sel_date"}
+            },
+            {
+              "joinaggregate": [{
+                "op": "distinct",
+                "field": "resource",
+                "as": "attendance"
+              }],
+              "groupby": ["group"]
+            },
+            {
+              "calculate": "datum.attendance / datum.total_members",
+              "as": "attendance_pct"
+            }
+          ],
+
+          "mark": {
+            "type": "bar"
+          },
+          "encoding": {
+            "y": {
+              "field": "attendance",
+              "type": "quantitative",
+              "title": ""
+            },
+            "tooltip": [
+              {"field": "total_members"},
+              {"field": "attendance"},
+              {"field": "attendance_pct", "format": ".0%", "title": "percentage"}
+            ]
           }
         }
       ]
